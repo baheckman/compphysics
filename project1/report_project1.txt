@@ -1,0 +1,44 @@
+Brian Heckman
+
+1)
+one small issue I ran into is using the math.exp in python.
+I did not read the documentation well enough and did not realize that
+math.exp is really e^(). I was using math.exp**() and could not figure
+out what was wrong with my mathematical function. After going back to
+the documentation I caught the mistake and that was fixed.
+
+handling -inf to inf:
+I tried a few different things to handle the case of -infinity to infinity.
+First, I just used a simple if statement as follows
+	if (a = -inf):
+		a = -10000
+and just changed from infinity to a really big number.
+This actually was not as close to the real value (sqrt(PI)) as just doing -10 to 10. So then I looked at the graph of the function and realized that the
+function approaches 0 in both pos and neg direction. So I simply looked at where
+the function is very close to 0, but still holds a large enough value.
+I the range I think works best is taking the first integer below 1.0e-9
+which is commonly used as a accuracy threshold in cimputing. This means that
+that a value I got is -4 and the b value I got is 4. So I changed to +- 4.
+
+2) For this problem I didn't run into many issues. The only think worth noting
+is that I discovered that the range function in python in the following case:
+	range(0, n)
+counts everything from 0 up to, but not including n. So I ran into an error here
+but used a +1 to correct for this mistake.
+
+Small modification to speed it up.
+One thing I thought of is that as soon as I found a number that divides evenly
+then I can stop searching. obviously that number is not prime. so stop at that point anf go on to the next number.
+
+Number of computations:
+In python I can run approximately 2,037,429 instruction per second
+(it's worth noting how much slower this is than C, python is a much slower
+language in general)
+In the worst case scenario, I would have to check from 2 to sqrt(n) for each
+n from 2 to 10^6.
+This number would be pretty big and TAKE SOOOOO MUCH TIME, so the simple
+optimization I listed above help dramatically.
+Most numbers are not prime so we cut out a lot of computational time and
+effort by doing those optimizations.
+A quick calculation would be about 2*10^11 instructions / 2 *10^6 is a lot
+of time. Thanklfully this only took about ~10 seconds to compute.
